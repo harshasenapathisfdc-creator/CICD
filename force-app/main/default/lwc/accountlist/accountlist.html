@@ -1,0 +1,158 @@
+<template>
+    <div class="header" onkeydown={handleKeydown} onclick={handleComponentClick}>
+        <div class="left slds-grid">
+            <div class="logo slds-m-right_small">
+                <template if:true={logoUrl}>
+                    <img src={logoUrl} alt="ADGM" class="logo-img" />
+                </template>
+                <template if:false={logoUrl}>
+                    <span class="logo-text">ADGM</span>
+                </template>
+            </div>
+
+            <!-- If current dashboard is 'main', render the large search bar instead of dropdown -->
+            <template if:true={isMain}>
+                <div class="search-container">
+                    <lightning-icon icon-name="utility:search" size="x-small" class="search-icon"></lightning-icon>
+                    <input class="search-input" type="text"
+                        placeholder="Search for services, entities, documents, employees..."
+                        onkeydown={handleSearchKeydown} />
+                </div>
+            </template>
+
+            <template if:false={isMain}>
+                <div class="title-dropdown">
+                    <button class="title-btn" aria-haspopup="true" aria-expanded={isMenuOpen} onclick={toggleMenu}>
+                        <span class="title">{currentDashboardLabel}</span>
+                        <img src={downArrow} alt="" class="collapse-button-arrow">
+                    </button>
+                    <template if:true={isMenuOpen}>
+                        <div class="menu slds-card">
+                            <ul role="menu">
+                                <li role="menuitem">
+                                    <button class="menu-item" data-value="adgm" onclick={handleSelect}>AccessADGM
+                                        Dashboard</button>
+                                </li>
+                                <li role="menuitem">
+                                    <button class="menu-item" data-value="ors" onclick={handleSelect}>ORS
+                                        Dashboard</button>
+                                </li>
+                                <li role="menuitem">
+                                    <button class="menu-item" data-value="rp" onclick={handleSelect}>AccessRP
+                                        Dashboard</button>
+                                </li>
+                            </ul>
+
+                        </div>
+
+
+
+                    </template>
+                </div>
+
+                <div class="icon-seperator">
+                    <img src={lineIcon} alt="">
+                </div>
+                <div class="title-dropdown" onclick={toggleAccount}>
+                    <div class="user-button slds-grid slds-p-around_small">
+                        <div class="icon-wrapper slds-m-right_small">
+                            <img src={entityIcon} alt="">
+                        </div>
+
+                        <div class="account-dropdown slds-grid slds-text-align_left">
+                            <span class="user-type">{selectedEntity}</span>
+                            <img src={downArrow} alt="" class="collapse-button-arrow">
+                        </div>
+
+                    </div>
+                    <template if:true={isAccountOpen}>
+                        <div class="menu-individual slds-card">
+                            <!--<ul role="menu">
+                                                                            <li role="menuitem">
+                                                                                <button class="menu-item" data-value="adgm" onclick={handleSelect}>AccessADGM
+                                                                                    Dashboard</button>
+                                                                            </li>
+                                                                            <li role="menuitem">
+                                                                                <button class="menu-item" data-value="ors" onclick={handleSelect}>ORS Dashboard</button>
+                                                                            </li>
+                                                                            <li role="menuitem">
+                                                                                <button class="menu-item" data-value="rp" onclick={handleSelect}>AccessRP
+                                                                                    Dashboard</button>
+                                                                            </li>
+                                                                        </ul>-->
+                            <template if:true={fetchedIndividual.length}>
+                                <template for:each={fetchedIndividual} for:item="entity" for:index="index">
+                                    <div class="menu-item-individual" key={entity.EntityName}
+                                        data-id={entity.Id} data-name={entity.EntityName} onclick={handleEntityClick}>{entity.EntityName}
+                                    </div>
+                                </template>
+
+                            </template>
+
+                            <template if:false={fetchedIndividual.length}>
+
+                                <span class="menu-item-individual">No Entities Found</span>
+
+
+                            </template>
+
+
+                        </div>
+                    </template>
+                </div>
+            </template>
+        </div>
+
+
+
+        <div class="right slds-grid ">
+            <div class="segment">
+                <button class={businessClass} onclick={selectBusiness} aria-pressed={isBusiness}>
+                    Business
+                </button>
+                <button class={individualClass} onclick={selectIndividual} aria-pressed={isIndividual}>
+                    Individual
+                </button>
+            </div>
+
+            <button class="icon-btn" title="Favorites" onclick={handleFavorite}>
+                <img src={favoritesIcon} alt="Favorite Services Icon" />
+            </button>
+            <button class="icon-btn notif" title="Notifications" onclick={handleNotifications}>
+                <img src={bellIcon} alt="Favorite Services Icon" />
+                <span class="badge" if:true={notificationCount}>{notificationCount}</span>
+            </button>
+            <!--<lightning-avatar size="medium" variant="circle" src={profilePhotoUrl}
+                fallback-icon-name="standard:user"></lightning-avatar>-->
+            <div class="header-profile">
+                <template if:false={isGuest}>
+                    <div class="profile-container">
+                        <div class="profile-image" onclick={handleUserProfile}>
+                            <template lwc:if={userPhotoURL}>
+                                <img src={userPhotoURL} alt="Profile Picture" onerror={handleImageError} />
+                            </template>
+                            <template lwc:else>
+                                <button class="icon-btn" title="Favorites" onclick={handleFavorite}>
+                                    <lightning-avatar size="medium" variant="circle" src={profilePhotoUrl}
+                                        fallback-icon-name="standard:user"></lightning-avatar>
+                                </button>
+
+                            </template>
+
+                        </div>
+                        <template if:true={isProfileDropDown}>
+                            <div class="dropdown-menu-profile">
+                                <ul class="profile-info">
+                                    <li onclick={navigateToProfile} class="profileURL">Profile</li>
+                                    <li onclick={handleLogout} class="profileURL">Logout</li>
+                                </ul>
+
+                            </div>
+
+                        </template>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
+</template>

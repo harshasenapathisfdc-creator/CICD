@@ -1,0 +1,104 @@
+<template>
+    <div class="payments-container">
+        <!-- Header -->
+        <div class="header-section">
+            <div class="title-section">
+                <img src={paymentIcon} alt="Payments" class="section-icon" />
+                <h2 class="section-title">Payments</h2>
+                <span class="count-badge">({totalCards})</span>
+            </div>
+                <button class="see-all-btn" onclick={handleSeeAll}>See All <img src={arrowrightIcon} /></button>
+        </div>
+
+        <!-- Cards -->
+        <!-- <div class="cards-container" data-id="cardsContainer">
+            <template for:each={visibleCards} for:item="payment">
+                <div key={payment.id} class="payment-card">
+                    <div class="card-content">
+                        <div class="reference-info">
+                            <span class="reference-number">{payment.id}</span>
+                            <span class="separator">•</span>
+                            <span class="service-request-id">{payment.serviceRequestId}</span>
+                        </div>
+                        <div class="payer-info">
+                            <span class="payer-name">{payment.description}</span>
+                        </div>
+                        <div class="date-time-info">
+                            <span class="date">{payment.date}</span>
+                        </div>
+                        <div class="content-divider"></div>
+                        <div class="card-footer">
+                            <div class="status-badges">
+                                <span class={payment.statusBadgeClass}>{payment.status}</span>
+                                <span class={payment.sourceBadgeClass}>{payment.source}</span>
+                            </div>
+                            <div class="amount">{payment.amount}</div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div> -->
+        <div class="cards-container">
+            <template lwc:if={noPaymentsFound}>
+                <p class="no-data">No Payments Found</p>
+            </template>
+            <div class="cards-wrapper" data-element="wrapper">
+                <template for:each={payments} for:item="payment">
+                    <div key={payment.id} class="payment-card" title={payment.entityName}>
+                        <div class="card-content">
+                            <div class="reference-info">
+                                <span class="reference-number">{payment.invoiceOrReceiptNumber}</span>
+                                <span class="separator">•</span>
+                                <span class="service-request-id">{payment.srNumber}</span>
+                            </div>
+                            <div class="payer-info">
+                                <span class="payer-name" title={payment.entityName}>{payment.entityName}</span>
+                                <div>
+                                <span class="date">{payment.entityNumber}</span>
+                            </div>
+                            </div>
+                            
+                            <div class="date-time-info">
+                                <span class="date">{payment.createdDate}</span>
+                            </div>
+                            <div class="content-divider"></div>
+                            <div class="card-footer">
+                                <div class="status-badges">
+                                    <span class={payment.statusClass}>{payment.status}</span>
+                                    <span class={payment.sourceBadgeClass}>{payment.sourceLabel}</span>
+                                </div>
+                                <div class="amount">{payment.currencyCode} {payment.amountWhole}.<span class="deicmal-value">{payment.amountDecimal}</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </div>
+
+
+        <!-- Navigation Section -->
+            <div class="navigation-section">
+                <div class="nav-divider"><span class="progress-segment" data-element="progress"></span></div>
+                <div class="nav-controls">
+                    <div class="arrow-pill">
+                        <button class="arrow-btn" onclick={handleScrollLeft} disabled={isLeftDisabled}
+                            aria-label="Previous">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M7.5 9L4.5 6L7.5 3" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <span class="v-sep"></span>
+                        <button class="arrow-btn" onclick={handleScrollRight} disabled={isRightDisabled}
+                            aria-label="Next">
+                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                <path d="M4.5 3L7.5 6L4.5 9" stroke="currentColor" stroke-width="1.5"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+    </div>
+</template>

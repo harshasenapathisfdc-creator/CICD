@@ -1,0 +1,264 @@
+/* Root header container */
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background: var(--lwc-colorBackgroundAlt, #ffffff);
+	border-radius: 14px;
+	padding: 12px 16px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.left {
+	gap: 8px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.right {
+	gap: 10px;
+}
+
+.logo-img {
+	height: 28px;
+	width: auto;
+}
+
+.logo-text {
+	font-weight: 700;
+	font-size: 18px;
+}
+
+.title-dropdown {
+	position: relative;
+}
+
+.title-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 50px;
+	border: none;
+	background: transparent;
+	font-size: 16px;
+	font-weight: 600;
+	padding: 6px 8px;
+	border-radius: 8px;
+}
+
+.title-btn:focus {
+	outline: none;
+	box-shadow: 0 0 0 2px #aad6ff;
+}
+
+.title {
+	color: #222;
+}
+
+.caret {
+	--sds-c-icon-color-foreground-default: #778;
+}
+
+.icon-seperator{
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.menu {
+	position: absolute;
+	min-width: 240px;
+	top: calc(100% + 6px);
+	left: 0;
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+	padding: 6px;
+	background: #ffffff;
+	z-index: 5;
+}
+
+.menu-individual {
+	position: absolute;
+	min-width: 200px;
+	top: calc(100% + 6px);
+	left: 0;
+	border-radius: 10px;
+	box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+	padding: 6px;
+	background: #ffffff;
+	z-index: 5;
+}
+
+.menu-item {
+	width: 100%;
+	text-align: left;
+	padding: 10px 12px;
+	border-radius: 8px;
+	border: none;
+	background: transparent;
+	font-size: 14px;
+}
+
+.menu-item-individual{
+	cursor: pointer;
+	width: 100%;
+	text-align: left;
+	padding: 10px 12px;
+	border-radius: 8px;
+	border: none;
+	background: transparent;
+	font-size: 14px;
+}
+
+/* .menu-item:hover { background: #f3f6fb; } */
+
+.segment {
+	background: #F5F5F5;;
+    border-radius: 13px;
+    padding: 6px;
+    display: inline-flex;
+    gap: 2px;
+    width: 12.5rem;
+}
+
+.seg-btn {
+	font-size: 14px;
+	padding: 10px 12px;
+	border-radius: 11px;
+	border: none;
+	background: transparent;
+    font-weight: 400;
+	width: 5.875rem;
+}
+
+.seg-btn.active {
+	background: #0088FF;
+    color: #fff;
+    
+}
+
+.icon-btn {
+	    border: none;
+    background: #F5F5F5;
+    border-radius: 16px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notif {
+	position: relative;
+}
+
+.badge {
+	position: absolute;
+	top: -4px;
+	right: -4px;
+	background: #e53935;
+	color: #fff;
+	border-radius: 12px;
+	min-width: 18px;
+	height: 18px;
+	padding: 0 4px;
+	font-size: 11px;
+	line-height: 18px;
+	text-align: center;
+}
+
+/* Search bar styles for 'main' mode */
+.search-container {
+	display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #f3f6fb;
+    border-radius: 24px;
+    padding: 8px 14px;
+    min-width: 540px;
+}
+
+.search-icon {
+    --sds-c-icon-color-foreground-default: #8aa0b6;
+}
+
+.search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    color: #1f2937;
+}
+
+.user-button {
+    border: 1px solid #d8dde6;
+    border-radius: 25px;
+    background: #CCE7FF; /* adjust background if needed */
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 12px 20px 12px 20px;
+    width: 202px;
+}
+
+.icon-wrapper .user-icon {
+    --sds-c-icon-color-foreground-default: white;
+    --sds-c-icon-color-background: #0038ff;
+    border-radius: 50%;
+    padding: 4px;
+    background: #0038ff;
+}
+
+.user-type {
+    font-size: 0.875rem;
+    color: #030303;
+    line-height: 100%;
+}
+
+.collapse-button-arrow{
+	width: 10px;
+}
+
+.account-dropdown{
+	/* gap:35px; */
+	justify-content: space-around;
+    flex: 1;
+}
+
+.profile-container {
+	/*margin-top: 0.3rem;
+    position: relative;*/
+}
+
+.profile-image {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.profile-image img {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+	border: 3px solid var(--color-white);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+}
+
+.dropdown-menu-profile {
+    position: absolute;
+    /*top: 28%;*/
+    right: 0.5%;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    width: 140px;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.profile-info {
+	cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
