@@ -34,6 +34,8 @@ trigger checkboxtrigger on Contact (before insert,before update) {
             ac.Credential_of_Interest__c =s;
             System.debug('the values are '+ac.Credential_of_Interest__c);
            System.debug('the values are '+s);
+           System.debug('the values are in'+s);
+           System.debug('the values are inside'+s);
        }
        
    } 
