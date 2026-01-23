@@ -16,6 +16,7 @@ trigger ProductUpdate on Product__c (after insert,after update) {
         {
             Affliated_prouct__c a=new Affliated_prouct__c();
             a.Bundle__c='a0G2v00002gzJjwEAE';
+            // Avoid hard coded values and place it in custom setting
             a.Productc__c=p.id;
             ap.add(a);
         }
